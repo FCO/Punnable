@@ -4,7 +4,7 @@ sub make-punnable(\Role) is export {
 			my $pun := Metamodel::ClassHOW.new_type(:name(self.name($obj)));
 
 			for $obj.^methods.grep({.?yada}).map: {.name} -> $stub {
-				$pun.^add_method($stub, method () {...})
+				$pun.^add_method($stub, method () is hidden-from-backtrace {...})
 			}
 
 			$pun.^add_role: $obj;
